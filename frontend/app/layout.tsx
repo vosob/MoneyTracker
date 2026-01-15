@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-
 import "./globals.css";
+import TanStackProvider from "./components/TanStackProvider";
 
 export const metadata: Metadata = {
   title: "Spendy",
@@ -14,7 +14,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <TanStackProvider>
+        <body>{children}</body>
+      </TanStackProvider>
     </html>
   );
 }
