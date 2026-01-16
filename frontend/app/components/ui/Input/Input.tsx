@@ -2,6 +2,8 @@ import classNames from "classnames";
 import { ReactNode } from "react";
 
 interface InputProps {
+  type: "text" | "password" | "email" | "number" | "date";
+  name: string;
   value?: string;
   variant?: "default" | "withIcon";
   placeholder?: string;
@@ -10,6 +12,8 @@ interface InputProps {
 }
 
 export const Input = ({
+  type = "text",
+  name,
   value,
   variant = "default",
   placeholder,
@@ -36,5 +40,13 @@ export const Input = ({
     );
   }
 
-  return <input className={styles} placeholder={placeholder} value={value} />;
+  return (
+    <input
+      className={styles}
+      type={type}
+      name={name}
+      placeholder={placeholder}
+      value={value}
+    />
+  );
 };

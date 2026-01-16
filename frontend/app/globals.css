@@ -1,5 +1,17 @@
 @import "tailwindcss";
 
+input[type="number"] {
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
 @theme {
   --color-text-white: #fcfcfc;
   --main-dark: #081222;

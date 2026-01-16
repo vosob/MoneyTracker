@@ -1,9 +1,13 @@
+import { Transaction } from "@/app/page";
+
 interface TransactionTableProps {
-  addNewTransaction: () => void;
+  openModal: () => void;
+  data: Transaction[];
 }
 
 export const TransactionTable = ({
-  addNewTransaction,
+  openModal,
+  data,
 }: TransactionTableProps) => {
   return (
     <div className="relative bg-gradient-to-b from-[#3B5D63] to-[#355359] rounded-xl px-8 py-4 w-full">
@@ -14,28 +18,36 @@ export const TransactionTable = ({
               Date
             </th>
             <th className="py-2 px-4 font-semibold text-left">Type</th>
-            <th className="py-2 px-4 font-semibold text-left">Category</th>
-            <th className="py-2 px-4 font-semibold text-left">Comment</th>
+            <th className="py-2 px-4 font-semibold text-left">Description</th>
             <th className="py-2 px-4 font-semibold text-left rounded-r-xl">
-              Sum
+              Amount
             </th>
           </tr>
         </thead>
 
         <tbody>
-          <tr className="text-sm">
-            <td className="py-2 px-4 text-left">04.01.23</td>
-            <td className="py-2 px-4 text-left">+</td>
-            <td className="py-2 px-4 text-left">Gift for your wife</td>
-            <td className="py-2 px-4 text-left">399</td>
-            <td className="py-2 px-4 text-left">Other</td>
-          </tr>
+          {data.length === 0 ? (
+            <tr>
+              <td colSpan={4} className="py-8 text-center text-white/60">
+                No transactions yet. Add your first transaction!
+              </td>
+            </tr>
+          ) : (
+            data.map((item) => (
+              <tr key={item.id} className="text-sm hover:bg-white/5">
+                <td className="py-2 px-4 text-left">{item.date}</td>
+                <td className="py-2 px-4 text-left">{item.type}</td>
+                <td className="py-2 px-4 text-left">{item.description}</td>
+                <td className="py-2 px-4 text-left">{item.amount}</td>
+              </tr>
+            ))
+          )}
         </tbody>
       </table>
 
       <button
-        onClick={addNewTransaction}
-        className="absolute right-6 bottom-6 size-14 bg-green-200 rounded-full flex items-center justify-center text-[var(--main-dark)] cursor-pointer"
+        onClick={openModal}
+        className="absolute right-6 bottom-6 size-14 bg-green-200 rounded-full flex items-center justify-center text-[var(--main-dark)] cursor-pointer hover:bg-green-300 transition-colors"
       >
         <span className="text-5xl -translate-y-1">+</span>
       </button>
