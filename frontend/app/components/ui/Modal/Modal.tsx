@@ -25,6 +25,7 @@ export const Modal = ({ children, onClose }: ModalProps) => {
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
       document.body.style.overflow = "auto";
+      console.log("qwe");
     };
   }, [onClose]);
 
@@ -51,6 +52,6 @@ export const Modal = ({ children, onClose }: ModalProps) => {
         {children}
       </div>
     </div>,
-    document.body
+    document.body,
   );
 };
